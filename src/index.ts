@@ -14,6 +14,7 @@ import { z } from "zod";
 import { loadConfig, type Config } from "./config.js";
 import { checkPermission, checkRepoAccess } from "./permissions.js";
 import { withTimeout } from "./utils.js";
+import { isHaikuEnabled, diagnoseWithHaiku } from "./haiku.js";
 
 // ============================================================================
 // INITIALIZATION
@@ -517,7 +518,7 @@ server.tool(
 
 server.tool(
   "gha_diagnose_failure",
-  "Analyze a failed workflow run",
+  "Analyze a failed workflow run (with optional AI diagnosis)",
   {
     repo: z.string().describe("Repository in owner/repo format"),
     run_id: z.number().describe("Workflow run ID"),
@@ -556,7 +557,7 @@ server.tool(
       }
     }
 
-    const result = {
+    const result: Record<string, unknown> = {
       run_id,
       workflow: run.name,
       conclusion: run.conclusion,
@@ -566,8 +567,34 @@ server.tool(
       failed_jobs: failedJobs.map((j) => j.name),
       failed_steps: failedSteps,
       url: run.html_url,
-      suggestion: "Use gha_get_run_logs to fetch detailed logs for the failed steps",
     };
+
+    // If Haiku fallback is enabled, get AI diagnosis
+    if (isHaikuEnabled(config) && failedJobs.length > 0) {
+      console.error("[github-actions-mcp] Running Haiku diagnosis...");
+
+      const diagnosis = await diagnoseWithHaiku(config, {
+        workflow: run.name || "unknown",
+        branch: run.head_branch || "unknown",
+        commit: run.head_sha.substring(0, 7),
+        commit_message: run.head_commit?.message?.split("\n")[0] || "",
+        failed_jobs: failedJobs.map((j) => j.name),
+        failed_steps: failedSteps.map((s) => ({ job: s.job, step: s.step })),
+      });
+
+      if (diagnosis) {
+        result.ai_diagnosis = diagnosis;
+        result.ai_model = config.fallback.model || "claude-haiku-4-5";
+      } else {
+        result.ai_diagnosis = null;
+        result.ai_note = "Haiku diagnosis failed or unavailable";
+      }
+    } else if (!isHaikuEnabled(config)) {
+      result.ai_diagnosis = null;
+      result.ai_note = "AI diagnosis disabled. Set fallback.enabled=true and provide ANTHROPIC_API_KEY to enable.";
+    } else {
+      result.suggestion = "No failed jobs to diagnose";
+    }
 
     return {
       content: [{ type: "text", text: JSON.stringify(result, null, 2) }],

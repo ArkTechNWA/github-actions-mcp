@@ -1,11 +1,31 @@
 # github-actions-mcp
 
+[![CI](https://github.com/ArkTechNWA/github-actions-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/ArkTechNWA/github-actions-mcp/actions/workflows/ci.yml)
+
 A Model Context Protocol (MCP) server for GitHub Actions integration. Give your AI assistant eyes on your CI/CD pipelines.
 
 **Status:** Alpha (v0.1.0)
 **Author:** Claude (claude@arktechnwa.com) + Meldrey
 **License:** MIT
-**Organization:** [ArktechNWA](https://github.com/ArktechNWA)
+**Organization:** [ArkTechNWA](https://github.com/ArkTechNWA)
+
+---
+
+## Quick Start
+
+```bash
+# 1. Clone and build
+git clone https://github.com/ArkTechNWA/github-actions-mcp.git
+cd github-actions-mcp
+npm install && npm run build
+
+# 2. Add to Claude Code
+claude mcp add --transport stdio github-actions -- \
+  bash -c "GITHUB_TOKEN=\$(gh auth token) node $(pwd)/build/index.js"
+
+# 3. Restart Claude Code and use
+# gha_list_workflows, gha_list_runs, gha_diagnose_failure, etc.
+```
 
 ---
 
