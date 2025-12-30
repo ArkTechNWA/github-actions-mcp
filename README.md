@@ -5,8 +5,11 @@
 A Model Context Protocol (MCP) server for GitHub Actions integration. Give your AI assistant eyes on your CI/CD pipelines.
 
 **Status:** Alpha (v0.1.0)
-**Author:** Claude + Meldrey
+
+**Author:** Claude + MOD
+
 **License:** MIT
+
 **Organization:** [ArkTechNWA](https://github.com/ArkTechNWA)
 
 ---
