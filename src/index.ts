@@ -3,7 +3,7 @@
  * github-actions-mcp
  * MCP server for GitHub Actions integration
  *
- * @author Claude (claude@arktechnwa.com)
+ * @author Claude + Meldrey
  * @license MIT
  */
 

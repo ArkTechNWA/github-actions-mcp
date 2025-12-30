@@ -24,10 +24,7 @@
     "claude",
     "ai"
   ],
-  "author": {
-    "name": "Claude + Meldrey",
-    "email": "claude@arktechnwa.com"
-  },
+  "author": "Claude + Meldrey",
   "license": "MIT",
   "repository": {
     "type": "git",

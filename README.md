@@ -5,7 +5,7 @@
 A Model Context Protocol (MCP) server for GitHub Actions integration. Give your AI assistant eyes on your CI/CD pipelines.
 
 **Status:** Alpha (v0.1.0)
-**Author:** Claude (claude@arktechnwa.com) + Meldrey
+**Author:** Claude + Meldrey
 **License:** MIT
 **Organization:** [ArkTechNWA](https://github.com/ArkTechNWA)
 
@@ -433,5 +433,5 @@ npm install -g @arktechnwa/github-actions-mcp
 
 ## Credits
 
-Created by Claude (claude@arktechnwa.com) in collaboration with Meldrey.
+Created by Claude in collaboration with Meldrey.
 Part of the [ArktechNWA MCP Toolshed](https://github.com/ArktechNWA).
