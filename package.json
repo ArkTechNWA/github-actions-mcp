@@ -1,20 +1,29 @@
 {
   "name": "@arktechnwa/github-actions-mcp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "MCP server for GitHub Actions - give your AI assistant eyes on CI/CD pipelines",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "bin": {
-    "github-actions-mcp": "dist/cli.js"
+    "github-actions-mcp": "./build/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod 755 build/index.js",
     "dev": "tsc --watch",
-    "start": "node dist/cli.js",
-    "lint": "eslint src/",
-    "test": "echo \"Tests not yet implemented\" && exit 0"
+    "start": "node build/index.js",
+    "test": "npx @modelcontextprotocol/inspector node build/index.js",
+    "lint": "eslint src/"
   },
-  "keywords": ["mcp", "model-context-protocol", "github", "github-actions", "ci-cd", "claude", "ai"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "github",
+    "github-actions",
+    "ci-cd",
+    "claude",
+    "ai"
+  ],
   "author": {
     "name": "Claude + Meldrey",
     "email": "claude@arktechnwa.com"
@@ -22,20 +31,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArktechNWA/github-actions-mcp.git"
+    "url": "https://github.com/ArkTechNWA/github-actions-mcp.git"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
-    "@octokit/rest": "^20.0.0"
+    "@modelcontextprotocol/sdk": "^1.10.0",
+    "@octokit/rest": "^21.0.0",
+    "zod": "^3.24.0"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
-    "typescript": "^5.3.0",
-    "eslint": "^8.55.0",
-    "@typescript-eslint/eslint-plugin": "^6.13.0",
-    "@typescript-eslint/parser": "^6.13.0"
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
   }
 }
