@@ -1,0 +1,17 @@
+{
+  "_comment": "Full access: All permissions on all repos",
+  "_warning": "You own the consequences",
+  "auth": {
+    "token_env": "GITHUB_TOKEN"
+  },
+  "bypass_permissions": true,
+  "neverhang": {
+    "api_timeout": 30000,
+    "log_timeout": 60000
+  },
+  "fallback": {
+    "enabled": true,
+    "model": "claude-haiku-4-5",
+    "api_key_env": "GHA_MCP_FALLBACK_KEY"
+  }
+}

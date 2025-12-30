@@ -1,0 +1,21 @@
+{
+  "_comment": "Read-only: View workflows and runs, no triggering",
+  "auth": {
+    "token_env": "GITHUB_TOKEN"
+  },
+  "permissions": {
+    "read": true,
+    "trigger": false,
+    "cancel": false,
+    "admin": false,
+    "whitelist_repos": [],
+    "blacklist_repos": []
+  },
+  "neverhang": {
+    "api_timeout": 30000,
+    "log_timeout": 60000
+  },
+  "fallback": {
+    "enabled": false
+  }
+}

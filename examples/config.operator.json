@@ -1,0 +1,29 @@
+{
+  "_comment": "Operator: Can trigger and re-run workflows on specific repos",
+  "auth": {
+    "token_env": "GITHUB_TOKEN"
+  },
+  "permissions": {
+    "read": true,
+    "trigger": true,
+    "cancel": true,
+    "admin": false,
+    "whitelist_repos": [
+      "ArktechNWA/*",
+      "myorg/myapp"
+    ],
+    "blacklist_repos": [
+      "*/infrastructure",
+      "*/secrets-*"
+    ]
+  },
+  "neverhang": {
+    "api_timeout": 30000,
+    "log_timeout": 60000
+  },
+  "fallback": {
+    "enabled": true,
+    "model": "claude-haiku-4-5",
+    "api_key_env": "GHA_MCP_FALLBACK_KEY"
+  }
+}
