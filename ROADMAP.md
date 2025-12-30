@@ -1,60 +1,48 @@
 # github-actions-mcp Roadmap
 
-## Phase 0: Foundation ✓
-- [x] README.md with spec
-- [x] ROADMAP.md
-- [ ] LICENSE, package.json, tsconfig
-- [ ] Example configs
+## v0.1.0 - Alpha Release ✓
 
-## Phase 1: Read-Only Core
-- [ ] GitHub API client with auth
-- [ ] `gha_list_workflows`
-- [ ] `gha_list_runs`
-- [ ] `gha_get_run`
-- [ ] NEVERHANG timeouts
+All core functionality complete:
 
-## Phase 2: Logs
-- [ ] `gha_get_run_logs`
-- [ ] Log streaming/chunking
-- [ ] Grep filtering
-- [ ] Job/step targeting
+- [x] GitHub API client with auth
+- [x] Permission system (read/trigger/cancel/admin)
+- [x] Repository whitelist/blacklist
+- [x] NEVERHANG timeouts & circuit breaker
+- [x] 10 tools implemented
+- [x] Haiku AI fallback for failure diagnosis
+- [x] CI workflow (self-testing)
+- [x] Documentation
 
-## Phase 3: Permission System
-- [ ] Permission levels (read, trigger, cancel, admin)
-- [ ] Repository whitelist/blacklist
-- [ ] `--bypass-permissions` flag
-- [ ] Config file loading
+### Tools
 
-## Phase 4: Actions
-- [ ] `gha_trigger_workflow`
-- [ ] `gha_rerun_workflow`
-- [ ] `gha_cancel_run`
-- [ ] `gha_set_workflow_state`
-
-## Phase 5: Rate Limit & Resilience
-- [ ] Rate limit tracking
-- [ ] Backoff on 403/429
-- [ ] Circuit breaker
-- [ ] Graceful degradation
-
-## Phase 6: AI Analysis
-- [ ] `gha_diagnose_failure`
-- [ ] Haiku integration
-- [ ] Log pattern analysis
-
-## Phase 7: Polish
-- [ ] Error messages
-- [ ] Test suite
-- [ ] npm publish
+| Tool | Status |
+|------|--------|
+| `gha_list_workflows` | ✓ |
+| `gha_get_workflow` | ✓ |
+| `gha_list_runs` | ✓ |
+| `gha_get_run` | ✓ |
+| `gha_get_run_logs` | ✓ |
+| `gha_trigger_workflow` | ✓ |
+| `gha_rerun_workflow` | ✓ |
+| `gha_cancel_run` | ✓ |
+| `gha_set_workflow_state` | ✓ |
+| `gha_diagnose_failure` | ✓ |
 
 ---
 
-| Version | Phase | Description |
-|---------|-------|-------------|
-| 0.1.0 | 1 | Read-only workflows/runs |
-| 0.2.0 | 2 | Log access |
-| 0.3.0 | 3 | Permission system |
-| 0.4.0 | 4 | Trigger/cancel actions |
-| 0.5.0 | 5 | Rate limiting |
-| 0.6.0 | 6 | AI diagnosis |
-| 1.0.0 | 7 | Production release |
+## Future
+
+### v0.2.0 - Enhancements
+- [ ] Workflow run comparison (diff two runs)
+- [ ] Flaky test detection patterns
+- [ ] Log search across multiple runs
+- [ ] Webhook support for real-time updates
+
+### v1.0.0 - Production
+- [ ] GitHub App authentication (org-wide, no PATs)
+- [ ] Test suite
+- [ ] npm publish (if demand exists)
+
+---
+
+**Status:** v0.1.0 released, CI passing, ready for use.

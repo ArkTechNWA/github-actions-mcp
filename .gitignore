@@ -41,3 +41,6 @@ pnpm-lock.yaml
 # Config with secrets (use example instead)
 config.json
 *.local.json
+
+# Local notes (not for public repo)
+story_notes_for_Chronicler.md
